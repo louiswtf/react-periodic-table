@@ -1,5 +1,5 @@
 {
-  "name": "warming-up",
+  "name": "react-periodic-table",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "semantic-ui-react": "^0.68.2"
   },
   "devDependencies": {
+    "bourbon": "^4.3.4",
     "node-sass": "^4.5.2",
     "react-scripts": "0.9.5"
   },

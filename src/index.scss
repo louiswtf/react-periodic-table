@@ -1,13 +1,125 @@
+@import 'bourbon/_bourbon';
 
 html {
-    height: 100%;
 }
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    height: 100%;
+    background: #333;
 }
 #root {
-    height: 100%;
+}
+
+
+
+.periodic-table {
+    margin: 20px auto;
+}
+
+.element,
+.spacer {
+    float: left;
+
+    &.clear {
+        clear: left;
+    }
+}
+
+.element {
+
+    .inner {
+        box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+    }
+
+    $category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
+    $category-colours: #952690 #6ed659 #ec515f #4cc65b #406698 #810cdf #79eb90 #da5818 #b13b5f #88e03d #ca63df;
+    $index: 1;
+
+    @each $category in $category-list {
+        &.#{$category} .inner {
+            $colour: nth($category-colours, $index);
+            @include background-image(linear-gradient(top, $colour 0%, lighten($colour, 10%) 100%));
+        }
+        $index: $index + 1;
+    }
+
+    .element-symbol {
+        font-weight: bold;
+        text-align: center;
+        padding-top: 10px;
+        color: #fff;
+    }
+
+    .element-number {
+        text-align: center;
+        color: #fff;
+    }
+}
+
+.periodic-table {
+    width: 720px;
+    height: 400px;
+}
+.element,
+.spacer {
+    width: 40px;
+    height: 40px;
+}
+.element .inner {
+    width: 38px;
+    height: 38px;
+
+    .element-symbol {
+        font-size: 12px;
+    }
+    .element-number {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 1200px) and (min-height: 600px) {
+    .periodic-table {
+        width: 1008px;
+        height: 560px;
+    }
+    .element,
+    .spacer {
+        width: 56px;
+        height: 56px;
+    }
+    .element .inner {
+        width: 54px;
+        height: 54px;
+
+        .element-symbol {
+            font-size: 24px;
+        }
+        .element-number {
+            font-size: 11px;
+        }
+    }
+}
+
+@media (min-width: 1600px) and (min-height: 840px) {
+    .periodic-table {
+        width: 1440px;
+        height: 800px;
+    }
+    .element,
+    .spacer {
+        width: 80px;
+        height: 80px;
+    }
+    .element .inner {
+        width: 76px;
+        height: 76px;
+
+        .element-symbol {
+            font-size: 32px;
+        }
+        .element-number {
+            font-size: 12px;
+        }
+    }
 }
