@@ -1,0 +1,38 @@
+
+.application-container {
+    height: 100%;
+}
+
+.application {
+    padding: 0 !important;
+}
+
+
+header {
+    background-color: #6978c6;
+    height: 70px;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: normal;
+    color: #fff;
+    line-height: 30px;
+    padding: 14px;
+}
+.header-nav {
+    a {
+        color: #fff;
+
+        &:hover {
+            color: #eee;
+        }
+    }
+}
+
+.menu-toggle {
+    color: #fff;
+    line-height: 30px;
+    padding: 14px;
+    display: block;
+}

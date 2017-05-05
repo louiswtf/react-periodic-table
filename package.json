@@ -1,0 +1,26 @@
+{
+  "name": "warming-up",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.68.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "build-css": "node-sass src/ -o src/",
+    "build-js": "react-scripts build",
+    "build": "npm run build-css && npm run build-js",
+    "start-css": "npm run build-css && npm run build-css -- --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p start-js start-css",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
