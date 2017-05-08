@@ -108,7 +108,17 @@ class PeriodicTable extends Component {
                 return (<Spacer key={key} clear={clear} />);
             } else {
                 if (element.ypos > 7 && e === 3) clear = true;
-                return (<Element key={key} clear={clear} {...element} filterPeriod={this.props.filterPeriod} filterTemperature={this.props.filterTemperature} filterCategory={this.props.filterCategory} handleElementSelection={this.props.onElementSelection} />);
+                return (
+                    <Element
+                        key={key}
+                        clear={clear}
+                        {...element}
+                        filterPeriod={this.props.filterPeriod}
+                        filterTemperature={this.props.filterTemperature}
+                        filterCategory={this.props.filterCategory}
+                        handleElementSelection={this.props.onElementSelection}
+                    />
+                );
             }
         });
 
