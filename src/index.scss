@@ -47,7 +47,7 @@ body {
         vertical-align: baseline;
         background: #777;
         color: #fff;
-        margin: 0 0.2vw 0 0;
+        margin: 0 0.2vw 0.2vw 0;
         padding: 0.2vw 0.3vw;
         text-align: center;
         text-decoration: none;
@@ -181,10 +181,8 @@ $index: 1;
 .categories .item {
     display: inline-block;
     padding: 0.2vw 0.3vw;
-    margin-bottom: 0.2vw;
+    margin: 0 0.2vw 0.2vw 0;
     font-size: 0.9vw;
-    float: left;
-    clear: left;
     cursor: pointer;
 }
 
