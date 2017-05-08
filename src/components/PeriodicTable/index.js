@@ -13,7 +13,7 @@ class Element extends Component {
 
     render() {
         let classes = ['element'];
-        let filterCategoryTest = (this.props.category.indexOf('unknown') === -1) ? this.props.category.replace(/ /g, '-') : 'unknown';
+        const elementFilterCategory = (this.props.category.indexOf('unknown') === -1) ? this.props.category.replace(/ /g, '-') : 'unknown';
         if (this.props.clear) classes.push('clear');
         classes.push('period-' + this.props.period);
         classes.push((this.props.category.indexOf('unknown') === -1) ? this.props.category.replace(/ /g, '-') : 'unknown');
@@ -23,7 +23,7 @@ class Element extends Component {
             }
         }
         if (this.props.filterCategory !== null) {
-            if (filterCategoryTest !== this.props.filterCategory) {
+            if (elementFilterCategory !== this.props.filterCategory) {
                 classes.push('fade');
             }
         }

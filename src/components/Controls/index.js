@@ -23,7 +23,7 @@ class Controls extends Component {
     }
 
     render() {
-        let periods = [1,2,3,4,5,6,7,'lanthanides','actinides'];
+        const periods = [1,2,3,4,5,6,7,'lanthanides','actinides'];
         let i = 0;
         let periodButtons = periods.map((period) => {
             let label = (typeof period === 'string') ? period.charAt(0).toUpperCase() + period.slice(1) : period;
@@ -36,7 +36,7 @@ class Controls extends Component {
             tempValue = this.props.filterTemperature;
             tempDisplay = tempValue + ' K';
         }
-        let elementsKey = [
+        const elementsKey = [
             {
                 name: 'Diatomic Non-Metal',
                 category: 'diatomic-nonmetal'

@@ -53,7 +53,6 @@ class App extends Component {
     }
 
     handleFilterCategory(filterCategory) {
-        console.log(filterCategory);
         this.resetFilters();
         this.setState({
             filterCategory: filterCategory
