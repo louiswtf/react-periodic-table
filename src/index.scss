@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 @mixin element-bg($colour) {
   background: $colour;
@@ -11,7 +11,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     background: #333;
     color: #fefefe;
 }
@@ -19,24 +19,48 @@ body {
 }
 
 .app {
-    margin: 20px;
+    margin: 1.5vw;
 }
 
 .controls {
     width: 18%;
+    margin-right: 5%;
     float: left;
 
     h2 {
-        margin: 0 0 20px 0;
+        margin: 0 0 1.5vw 0;
         padding: 0;
         font-size: 1.5vw;
+    }
+
+    h3 {
+        margin: 1.2vw 0 0.7vw 0;
+        padding: 0;
+        font-size: 1vw;
+    }
+
+    button {
+        cursor: pointer;
+        display: inline-block;
+        outline: 0;
+        border: none;
+        vertical-align: baseline;
+        background: #777;
+        color: #fff;
+        margin: 0 0.2vw 0 0;
+        padding: 0.2vw 0.3vw;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+        border-radius: 0.2vw;
+        font-size: 0.8vw;
     }
 }
 
 
 
 .periodic-table {
-    width: 82%;
+    width: 77%;
     float: left;
     position: relative;
 }
@@ -107,16 +131,16 @@ $element-inner-margin: 0.15vw;
 
     .inner {
         color: #fff;
-        box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 0.3vw 0px rgba(0,0,0,0.5);
 
         .element-symbol {
-            margin-top: 0.8vw;
+            margin-top: 0.6vw;
             font-size: 1.5vw;
             font-weight: bold;
             text-align: center;
         }
         .element-number {
-            font-size: 1vw;
+            font-size: 0.8vw;
             text-align: center;
         }
     }
@@ -148,65 +172,108 @@ $index: 1;
     &.#{$category} .inner {
         @include element-bg(nth($element-category-colours, $index));
     }
-    .key &.item.#{$category} {
+    .categories &.item.#{$category} {
         @include element-bg(nth($element-category-colours, $index));
     }
     $index: $index + 1;
 }
 
-.key .item {
+.categories .item {
     display: inline-block;
-    padding: 3px 5px;
-    margin-bottom: 3px;
+    padding: 0.2vw 0.3vw;
+    margin-bottom: 0.2vw;
+    font-size: 0.9vw;
     float: left;
     clear: left;
     cursor: pointer;
 }
 
-/*
-@media (min-width: 1200px) and (min-height: 600px) {
-    .periodic-table {
-        width: 1008px;
-        height: 560px;
-    }
-    .element,
-    .spacer {
-        width: 56px;
-        height: 56px;
-    }
-    .element .inner {
-        width: 54px;
-        height: 54px;
-
-        .element-symbol {
-            font-size: 24px;
-        }
-        .element-number {
-            font-size: 11px;
-        }
-    }
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 0.5vw 0;
+    width: 100%;
 }
-
-@media (min-width: 1600px) and (min-height: 840px) {
-    .periodic-table {
-        width: 1440px;
-        height: 800px;
-    }
-    .element,
-    .spacer {
-        width: 5.555555555555556%;
-        height: 80px;
-    }
-    .element .inner {
-        width: 76px;
-        height: 76px;
-
-        .element-symbol {
-            font-size: 32px;
-        }
-        .element-number {
-            font-size: 12px;
-        }
-    }
+input[type=range]:focus {
+    outline: none;
 }
-*/
+input[type=range]::-webkit-slider-runnable-track {
+    width: 90%;
+    height: 0.5vw;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #000000;
+    border-radius: 0;
+    border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 1vw;
+    width: 1vw;
+    border-radius: 1vw;
+    background: #999999;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.25vw;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #000000;
+}
+input[type=range]::-moz-range-track {
+    width: 90%;
+    height: 0.5vw;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #000000;
+    border-radius: 0;
+    border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 1vw;
+    width: 1vw;
+    border-radius: 1vw;
+    background: #999999;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.25vw;
+}
+input[type=range]::-ms-track {
+    width: 90%;
+    height: 0.5vw;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #000000;
+    border-radius: 0;
+    border: 0px solid #000000;
+}
+input[type=range]::-ms-fill-lower {
+    background: #000000;
+    border: 0px solid #000000;
+    border-radius: 0;
+    box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+    background: #000000;
+    border: 0px solid #000000;
+    border-radius: 0;
+    box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 1vw;
+    width: 1vw;
+    border-radius: 1vw;
+    background: #999999;
+    cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #000000;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #000000;
+}
