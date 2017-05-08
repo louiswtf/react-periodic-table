@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import periodic_table from "../../../data/elements.min.json";
+import data from "../../../data/elements.json";
+import Controls from '../Controls';
 import PeriodicTable from '../PeriodicTable';
 
 class App extends Component {
@@ -9,18 +10,82 @@ class App extends Component {
         super(props);
         this.state = {
             elements: [],
-            isLoading: true
+            isLoading: true,
+            filterPeriod: null,
+            filterTemperature: null,
+            filterCategory: null,
+            elementSelection: null
         };
+        this.handleFilterPeriod = this.handleFilterPeriod.bind(this);
+        this.handleFilterTemperature = this.handleFilterTemperature.bind(this);
+        this.handleElementSelection = this.handleElementSelection.bind(this);
+        this.handleFilterCategory = this.handleFilterCategory.bind(this);
+    }
+
+    resetFilters() {
+        this.setState({
+            filterPeriod: null,
+            filterTemperature: null,
+            filterCategory: null,
+            elementSelection: null
+        });
+    }
+
+    handleFilterPeriod(filterPeriod) {
+        this.resetFilters();
+        this.setState({
+            filterPeriod: (filterPeriod === this.state.filterPeriod) ? null : filterPeriod
+        });
+    }
+
+    handleFilterTemperature(filterTemperature) {
+        this.resetFilters();
+        this.setState({
+            filterTemperature: filterTemperature
+        });
+    }
+
+    handleElementSelection(elementSelection) {
+        this.resetFilters();
+        this.setState({
+            elementSelection: elementSelection
+        });
+    }
+
+    handleFilterCategory(filterCategory) {
+        console.log(filterCategory);
+        this.resetFilters();
+        this.setState({
+            filterCategory: filterCategory
+        });
     }
 
     componentDidMount() {
-        this.setState( { elements:periodic_table.elements, isLoading: false } );
+        this.setState({
+            elements: data.elements,
+            isLoading: false
+        });
     }
 
     render() {
         return (
-            <div>
-                <PeriodicTable elements={this.state.elements} />
+            <div className="app">
+                <Controls
+                    filterPeriod={this.state.filterPeriod}
+                    filterTemperature={this.state.filterTemperature}
+                    filterCategory={this.state.filterCategory}
+                    onFilterPeriod={this.handleFilterPeriod}
+                    onFilterTemperature={this.handleFilterTemperature}
+                    onFilterCategory={this.handleFilterCategory}
+                />
+                <PeriodicTable
+                    elements={this.state.elements}
+                    elementSelection={this.state.elementSelection}
+                    filterPeriod={this.state.filterPeriod}
+                    filterTemperature={this.state.filterTemperature}
+                    filterCategory={this.state.filterCategory}
+                    onElementSelection={this.handleElementSelection}
+                />
             </div>
         );
     }

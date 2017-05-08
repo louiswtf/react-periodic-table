@@ -1,4 +1,10 @@
-@import 'bourbon/_bourbon';
+
+
+@mixin element-bg($colour) {
+  background: $colour;
+  background: linear-gradient(to bottom, $colour 0%, lighten($colour, 10%) 100%);
+}
+
 
 html {
 }
@@ -7,77 +13,157 @@ body {
     padding: 0;
     font-family: sans-serif;
     background: #333;
+    color: #fefefe;
 }
 #root {
+}
+
+.app {
+    margin: 20px;
+}
+
+.controls {
+    width: 18%;
+    float: left;
+
+    h2 {
+        margin: 0 0 20px 0;
+        padding: 0;
+        font-size: 1.5vw;
+    }
 }
 
 
 
 .periodic-table {
-    margin: 20px auto;
+    width: 82%;
+    float: left;
+    position: relative;
 }
 
-.element,
-.spacer {
+$element-width: 5.55556%;
+$element-inner-margin: 0.15vw;
+
+.info {
+    width: $element-width * 10;
+    position: absolute;
+    top: 0;
+    left: $element-width * 2;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+
+    .aspect-ratio {
+        padding-bottom: 30%;
+    }
+
+    .inner {
+        background: #444;
+        position: absolute;
+        top: $element-inner-margin;
+        bottom: $element-inner-margin;
+        left: $element-inner-margin;
+        right: $element-inner-margin;
+
+        h3 {
+            margin: 5px;
+            font-size: 1.5vw;
+        }
+        p {
+            margin: 5px;
+            font-size: 1.2vw;
+        }
+    }
+}
+
+.element, .spacer {
+    position: relative;
+    width: $element-width;
     float: left;
 
     &.clear {
         clear: left;
     }
+
+    .aspect-ratio {
+        padding-bottom: 100%;
+    }
+
+
+    .inner {
+        position: absolute;
+        top: $element-inner-margin;
+        bottom: $element-inner-margin;
+        left: $element-inner-margin;
+        right: $element-inner-margin;
+    }
 }
 
 .element {
 
+    cursor: pointer;
+
     .inner {
+        color: #fff;
         box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
-    }
 
-    $category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
-    $category-colours: #952690 #6ed659 #ec515f #4cc65b #406698 #810cdf #79eb90 #da5818 #b13b5f #88e03d #ca63df;
-    $index: 1;
-
-    @each $category in $category-list {
-        &.#{$category} .inner {
-            $colour: nth($category-colours, $index);
-            @include background-image(linear-gradient(top, $colour 0%, lighten($colour, 10%) 100%));
+        .element-symbol {
+            margin-top: 0.8vw;
+            font-size: 1.5vw;
+            font-weight: bold;
+            text-align: center;
         }
-        $index: $index + 1;
+        .element-number {
+            font-size: 1vw;
+            text-align: center;
+        }
     }
 
-    .element-symbol {
-        font-weight: bold;
-        text-align: center;
-        padding-top: 10px;
-        color: #fff;
+    &.state-solid .inner {
+        @include element-bg(#74b8bb);
+    }
+    &.state-liquid .inner {
+        @include element-bg(#1b7e60);
+    }
+    &.state-gas .inner {
+        @include element-bg(#b57775);
+    }
+    &.state-unknown .inner {
+        background: #666;
+        color: #CCC;
     }
 
-    .element-number {
-        text-align: center;
-        color: #fff;
-    }
-}
-
-.periodic-table {
-    width: 720px;
-    height: 400px;
-}
-.element,
-.spacer {
-    width: 40px;
-    height: 40px;
-}
-.element .inner {
-    width: 38px;
-    height: 38px;
-
-    .element-symbol {
-        font-size: 12px;
-    }
-    .element-number {
-        font-size: 10px;
+    &.fade .inner {
+        opacity: 0.2;
     }
 }
 
+$element-category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
+$element-category-colours: #995096 #cc7dc4 #e27a83 #61b56b #406698 #825099 #5cc772 #cc6a39 #af4766 #8cc45b #b961cb;
+$index: 1;
+
+@each $category in $element-category-list {
+    &.#{$category} .inner {
+        @include element-bg(nth($element-category-colours, $index));
+    }
+    .key &.item.#{$category} {
+        @include element-bg(nth($element-category-colours, $index));
+    }
+    $index: $index + 1;
+}
+
+.key .item {
+    display: inline-block;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    float: left;
+    clear: left;
+    cursor: pointer;
+}
+
+/*
 @media (min-width: 1200px) and (min-height: 600px) {
     .periodic-table {
         width: 1008px;
@@ -108,7 +194,7 @@ body {
     }
     .element,
     .spacer {
-        width: 80px;
+        width: 5.555555555555556%;
         height: 80px;
     }
     .element .inner {
@@ -123,3 +209,4 @@ body {
         }
     }
 }
+*/
