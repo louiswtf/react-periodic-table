@@ -165,7 +165,7 @@ $element-inner-margin: 0.15vw;
 }
 
 $element-category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
-$element-category-colours: #995096 #cc7dc4 #e27a83 #61b56b #406698 #825099 #5cc772 #cc6a39 #af4766 #8cc45b #b961cb;
+$element-category-colours: #cb48c5 #cc7dc4 #e27a83 #37783e #406698 #825099 #5cc772 #cc6a39 #af4766 #c3c648 #a2a2a2;
 $index: 1;
 
 @each $category in $element-category-list {

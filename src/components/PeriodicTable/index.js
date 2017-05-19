@@ -101,7 +101,7 @@ class PeriodicTable extends Component {
             }
         }
 
-        let elementComponents = elements.map((element) => {
+        let tableSquares = elements.map((element) => {
             let key = 'element-' + e++;
             let clear = ((e - 1) % 18 === 0);
             if (element === undefined) {
@@ -125,7 +125,7 @@ class PeriodicTable extends Component {
         return (
             <div className="periodic-table">
                 <InfoViewer elementSelection={this.props.elementSelection} />
-                {elementComponents}
+                {tableSquares}
             </div>
         );
     }

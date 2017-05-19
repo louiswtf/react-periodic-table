@@ -20,6 +20,7 @@ class App extends Component {
         this.handleFilterTemperature = this.handleFilterTemperature.bind(this);
         this.handleElementSelection = this.handleElementSelection.bind(this);
         this.handleFilterCategory = this.handleFilterCategory.bind(this);
+        this.handleClearFilters = this.resetFilters.bind(this);
     }
 
     resetFilters() {
@@ -76,6 +77,7 @@ class App extends Component {
                     onFilterPeriod={this.handleFilterPeriod}
                     onFilterTemperature={this.handleFilterTemperature}
                     onFilterCategory={this.handleFilterCategory}
+                    onClearFilters={this.handleClearFilters}
                 />
                 <PeriodicTable
                     elements={this.state.elements}
