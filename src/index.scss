@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-@mixin element-bg($colour) {
+@mixin gradient-bg($colour) {
   background: $colour;
   background: linear-gradient(to bottom, $colour 0%, lighten($colour, 10%) 100%);
 }
 
+$colour-solid: #74b8bb;
+$colour-liquid: #1b7e60;
+$colour-gas: #b57775;
+
+$element-width: 5.55556%;
+$element-inner-margin: 0.15vw;
+
+$element-category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
+$element-category-colours: #cb48c5 #cc7dc4 #e27a83 #37783e #406698 #825099 #5cc772 #cc6a39 #af4766 #c3c648 #a2a2a2;
 
 html {
 }
@@ -65,9 +74,6 @@ body {
     position: relative;
 }
 
-$element-width: 5.55556%;
-$element-inner-margin: 0.15vw;
-
 .info {
     width: $element-width * 10;
     position: absolute;
@@ -92,12 +98,37 @@ $element-inner-margin: 0.15vw;
         right: $element-inner-margin;
 
         h3 {
-            margin: 5px;
+            margin: 1vw;
             font-size: 1.5vw;
         }
         p {
-            margin: 5px;
+            margin: 1vw;
             font-size: 1.2vw;
+        }
+        .key {
+            .temp-key {
+                margin: 1vw;
+                display: inline-block;
+                padding: 1vw;
+                font-size: 1.2vw;
+
+
+                &.solid {
+                    @include gradient-bg($colour-solid);
+                }
+                &.liquid {
+                    @include gradient-bg($colour-liquid);
+                }
+                &.gas {
+                    @include gradient-bg($colour-gas);
+                }
+            }
+        }
+        .grid-3 {
+            .col {
+                width: 33.33333%;
+                float: left;
+            }
         }
     }
 }
@@ -146,13 +177,13 @@ $element-inner-margin: 0.15vw;
     }
 
     &.state-solid .inner {
-        @include element-bg(#74b8bb);
+        @include gradient-bg($colour-solid);
     }
     &.state-liquid .inner {
-        @include element-bg(#1b7e60);
+        @include gradient-bg($colour-liquid);
     }
     &.state-gas .inner {
-        @include element-bg(#b57775);
+        @include gradient-bg($colour-gas);
     }
     &.state-unknown .inner {
         background: #666;
@@ -164,16 +195,13 @@ $element-inner-margin: 0.15vw;
     }
 }
 
-$element-category-list: diatomic-nonmetal noble-gas alkali-metal alkaline-earth-metal metalloid polyatomic-nonmetal post-transition-metal transition-metal lanthanide actinide unknown;
-$element-category-colours: #cb48c5 #cc7dc4 #e27a83 #37783e #406698 #825099 #5cc772 #cc6a39 #af4766 #c3c648 #a2a2a2;
 $index: 1;
-
 @each $category in $element-category-list {
     &.#{$category} .inner {
-        @include element-bg(nth($element-category-colours, $index));
+        @include gradient-bg(nth($element-category-colours, $index));
     }
     .categories &.item.#{$category} {
-        @include element-bg(nth($element-category-colours, $index));
+        @include gradient-bg(nth($element-category-colours, $index));
     }
     $index: $index + 1;
 }
@@ -184,6 +212,10 @@ $index: 1;
     margin: 0 0.2vw 0.2vw 0;
     font-size: 0.9vw;
     cursor: pointer;
+}
+
+#tempvalue {
+    height: 1.4vw;
 }
 
 input[type=range] {

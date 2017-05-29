@@ -17,6 +17,11 @@ class Element extends Component {
         if (this.props.clear) classes.push('clear');
         classes.push('period-' + this.props.period);
         classes.push((this.props.category.indexOf('unknown') === -1) ? this.props.category.replace(/ /g, '-') : 'unknown');
+        if (this.props.elementSelection !== null) {
+            if (this.props.elementSelection.name !== this.props.name) {
+                classes.push('fade');
+            }
+        }
         if (this.props.filterPeriod !== null) {
             if (Number(this.props.period) !== Number(this.props.filterPeriod)) {
                 classes.push('fade');
@@ -65,7 +70,12 @@ class Spacer extends Component {
 class InfoViewer extends Component {
     render() {
         let classes = ['info'];
-        let html = '';
+        let html = <div className="inner"></div>;
+        let displayTemp = {
+            k: Math.round(this.props.filterTemperature),
+            c: Math.round(this.props.filterTemperature - 273),
+            f: Math.round((this.props.filterTemperature - 273) * (9/5) + 32)
+        };
         if (this.props.elementSelection !== null) {
             classes.push('active');
             html = (
@@ -74,8 +84,29 @@ class InfoViewer extends Component {
                     <p>{this.props.elementSelection.summary}</p>
                 </div>
             );
-        } else {
-            html = <div className="inner"></div>;
+        }
+        if (this.props.filterTemperature !== null) {
+            classes.push('active');
+            html = (
+                <div className="inner">
+                    <div className="key">
+                        <div className="temp-key solid">Solid</div>
+                        <div className="temp-key liquid">Liquid</div>
+                        <div className="temp-key gas">Gas</div>
+                    </div>
+                    <div className="grid-3">
+                        <div className="col">
+                            {displayTemp.k} K
+                        </div>
+                        <div className="col">
+                            {displayTemp.c} &deg;C
+                        </div>
+                        <div className="col">
+                            {displayTemp.f} &deg;F
+                        </div>
+                    </div>
+                </div>
+            );
         }
         return (
             <div className={classes.join(' ')}>
@@ -116,6 +147,7 @@ class PeriodicTable extends Component {
                         filterPeriod={this.props.filterPeriod}
                         filterTemperature={this.props.filterTemperature}
                         filterCategory={this.props.filterCategory}
+                        elementSelection={this.props.elementSelection}
                         handleElementSelection={this.props.onElementSelection}
                     />
                 );
@@ -124,7 +156,7 @@ class PeriodicTable extends Component {
 
         return (
             <div className="periodic-table">
-                <InfoViewer elementSelection={this.props.elementSelection} />
+                <InfoViewer elementSelection={this.props.elementSelection} filterTemperature={this.props.filterTemperature} />
                 {tableSquares}
             </div>
         );

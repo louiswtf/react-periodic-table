@@ -35,10 +35,8 @@ class Controls extends Component {
             return <button key={buttonKey} value={period} onClick={this.handleFilterPeriod}>{period}</button>
         });
         let tempValue = 0;
-        let tempDisplay = '';
         if (this.props.filterTemperature !== null) {
             tempValue = this.props.filterTemperature;
-            tempDisplay = tempValue + ' K';
         }
         const elementsCategories = [
             {
@@ -101,7 +99,6 @@ class Controls extends Component {
                 <div className="controls-section">
                     <h3>Temperature</h3>
                     <input type="range" min="0" max="6000" value={tempValue} onChange={this.handleFilterTemperature} />
-                    <span id="tempvalue">{tempDisplay}</span>
                 </div>
                 <div className="controls-section">
                     <h3>Categories</h3>
