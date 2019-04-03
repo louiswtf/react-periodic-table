@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PeriodicTable from './';
-import data from "../../../data/elements.json";
+import data from "../../../public/elements.json";
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

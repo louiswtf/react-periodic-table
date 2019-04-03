@@ -20,7 +20,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: Arial, sans-serif;
     background: #333;
     color: #fefefe;
 }
@@ -112,15 +112,14 @@ body {
                 padding: 1vw;
                 font-size: 1.2vw;
 
-
                 &.solid {
-                    @include gradient-bg($colour-solid);
+                    color: $colour-solid;
                 }
                 &.liquid {
-                    @include gradient-bg($colour-liquid);
+                    color: $colour-liquid;
                 }
                 &.gas {
-                    @include gradient-bg($colour-gas);
+                    color: $colour-gas;
                 }
             }
         }
